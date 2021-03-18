@@ -31,9 +31,15 @@ Route::post('/login', 'LoginController@autenticar')->name('site.login');
 
 //App
 Route::middleware('autenticacao:padrao, visitante')->prefix('/app')->group(function(){
-    Route::get('/clientes', function(){ return 'Clientes'; })->name('app.clientes');
-    Route::get('/fornecedores', 'FornecedorController@index')->name('app.fornecedores');
-    Route::get('/produtos', function(){ return 'Produtos'; })->name('app.produtos');
+    Route::get('/home', 'HomeController@index')->name('app.home');
+    Route::get('/sair', 'LoginController@sair')->name('app.sair');
+    Route::get('/cliente', 'ClienteController@index')->name('app.cliente');
+
+    Route::get('/fornecedor', 'FornecedorController@index')->name('app.fornecedor');
+    Route::post('/fornecedor/listar', 'FornecedorController@listar')->name('app.fornecedor.listar');
+    Route::get('/fornecedor/adicionar', 'FornecedorController@adicionar')->name('app.fornecedor.adicionar');
+
+    Route::get('/produto', 'ProdutoController@index')->name('app.produto');
 });
 
 
